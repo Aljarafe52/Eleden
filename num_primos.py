@@ -53,7 +53,7 @@ preg = input("¿Quiere ver la lista completa? (S): ").lower()
 if preg == "s":
     print(num_primos)
     
-    #guarda en archivo txt(lista_inicial)
+    #guarda en archivo txt
     with open(my_path, 'a+')  as f:
         f.write(f"\nNúmeros primos del {num_inicio} al {num_maximo}\n")
         for i in num_primos:
