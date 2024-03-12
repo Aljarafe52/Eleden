@@ -1,21 +1,29 @@
 #Pequeño programa de inicio de estudios en Python
 #Calcula los números primos dentro de unos límites
-#Los resultados se pueden ver en el terminal y en archivo .txt
+#Los resultados se pueden ver en el terminal y guardar en archivo .txt
 
 #Crear variables
 
 flag = 0
+
 num_inicio = int(input("Número mínimo para encontrar los primos: "))
 if num_inicio < 8:
     num_minimo = 8
     flag = 1
 else:
     num_minimo = num_inicio
-    
-num_maximo = int(input("Número máximo para encontrar los primos: "))
+ 
+comp = 0 
+while comp == 0 :   
+    num_maximo = int(input("Número máximo para encontrar los primos: "))
+    if num_maximo <= num_inicio:
+        print("El número máximo tiene que ser mayor que el mínimo")
+    else:
+        comp=1
+
 contador = num_minimo
 
-my_path ="[Tu archivo].txt" #[Escribe el path de tu archivo]
+my_path ="[My_path].txt" #[Sustituir por el path de tu archivo .txt]
 
 #Crear listas
 
@@ -43,23 +51,31 @@ else:
 muestra = (num_maximo - num_inicio) + 1
 por_ciento = round((100 * int(len(num_primos)))/muestra, 2)
              
-#imprimir resultados
+#imprimir y guardar resultados
 
 if num_inicio < 8:
-    num_minimo = num_inicio
+    num_minimo = 1
+    num_maximo = 8
     
-print(f"Entre el {num_minimo} y el {num_maximo} hay {len(num_primos)} números primos que representan un {por_ciento}% de una muestra de {muestra} números.")
-preg = input("¿Quiere ver la lista completa? (S): ").lower()
+if len(num_primos) != 0:
+    print(f"Entre el {num_minimo} y el {num_maximo} hay {len(num_primos)} números primos que representan un {por_ciento}% de una muestra de {muestra} números.")
+    preg = input("¿Quiere ver la lista completa? (S): ").lower()
+else:
+     print(f"Entre el {num_minimo} y el {num_maximo} no hay ningún número primo")
+     preg = "n"
 
-if preg == "s":
+if preg == "s" and len(num_primos) !=0:
     print(num_primos)
     
-    #guarda en archivo txt
-    with open(my_path, 'a+')  as f:
-        f.write(f"\nNúmeros primos del {num_inicio} al {num_maximo}\n")
-        for i in num_primos:
-            f.write(f"{i},")
-    f.close()
-    
+    #guarda en archivo txt(lista_inicial)
+    preg = input("¿Quiere guardar la lista en archivo .txt? (S): ").lower()
+    if preg == "s":
+        with open(my_path, 'a+')  as f:
+            f.write(f"\nNúmeros primos del {num_inicio} al {num_maximo}\n")
+            for i in num_primos:
+                f.write(f"{i},")
+        f.close()
 else:
-    print("No se mostrará la lista")
+    if len(num_primos) != 0:
+        print("No se mostrará  ni se guardará la lista")
+    
