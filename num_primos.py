@@ -14,6 +14,7 @@ else:
     
 num_maximo = int(input("Número máximo para encontrar los primos: "))
 contador = num_minimo
+
 my_path ="[Tu archivo].txt" #[Escribe el path de tu archivo]
 
 #Crear listas
